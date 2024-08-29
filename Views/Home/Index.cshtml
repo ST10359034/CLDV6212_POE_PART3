@@ -1,0 +1,136 @@
+﻿@model ABC_Retail.Models.CustomerProfile
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .file-list {
+            margin-top: 10px;
+        }
+
+            .file-list ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .file-list li {
+                margin-bottom: 5px;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Upload Image Section -->
+        <div class="section">
+            <h2>Upload Image</h2>
+            <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <button type="submit">Upload Image</button>
+            </form>
+        </div>
+
+        <!-- Add Customer Profile Section -->
+        <div class="section">
+            <h2>Add Customer Profile</h2>
+            <form asp-action="AddCustomerProfile" method="post">
+                <input type="text" name="FirstName" placeholder="First Name" />
+                <input type="text" name="LastName" placeholder="Last Name" />
+                <input type="email" name="Email" placeholder="Email" />
+                <input type="text" name="PhoneNumber" placeholder="Phone Number" />
+                <button type="submit">Add Profile</button>
+            </form>
+        </div>
+
+        <!-- Process Order Section -->
+        <div class="section">
+            <h2>Process Order</h2>
+            <form asp-action="ProcessOrder" method="post">
+                <input type="text" name="orderId" placeholder="Order ID" />
+                <button type="submit">Process Order</button>
+            </form>
+        </div>
+
+        <!-- Upload Contract Section -->
+        <div class="section">
+            <h2>Upload Contract</h2>
+            <form asp-action="UploadContract" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <button type="submit">Upload Contract</button>
+            </form>
+        </div>
+
+        <!-- Download and Display Files Section -->
+        <div class="section">
+            <h2>Download and Display Files</h2>
+            <form asp-action="ListBlobs" method="post">
+                <button type="submit">List Files in Blob Storage</button>
+            </form>
+
+            <div class="file-list">
+                <h3>Files in Blob Storage:</h3>
+                <ul>
+                    <!-- This is where the list of files will be rendered -->
+                    @if (ViewBag.Blobs != null)
+                    {
+                        foreach (var blob in ViewBag.Blobs)
+                        {
+                            <li>
+                                <a href="@Url.Action("DownloadBlob", new { blobName = blob.Name })">@blob.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
