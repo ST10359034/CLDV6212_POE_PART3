@@ -1,0 +1,109 @@
+﻿@model ABC_Retail.Models.CustomerProfile
+@{
+    ViewData["Title"] = "Submit Customer, Product, and Order Information";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <!-- Customer Profile Section -->
+    <h3>Customer Profile</h3>
+    <div class="form-group">
+        <label for="FirstName">First Name</label>
+        <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.FirstName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Last Name</label>
+        <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
+    </div>
+
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ContractFilePath">Contract File</label>
+        <input type="file" class="form-control" id="ContractFilePath" name="ContractFilePath" />
+    </div>
+
+    <div class="form-group">
+        <label for="ImageFilePath">Profile Image</label>
+        <input type="file" class="form-control" id="ImageFilePath" name="ImageFilePath" />
+    </div>
+
+    <hr />
+
+    <!-- Product Information Section -->
+    <h3>Product Information</h3>
+    <div class="form-group">
+        <label for="ProductId">Product ID</label>
+        <input type="number" class="form-control" id="ProductId" name="ProductId" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ProductName">Product Name</label>
+        <input type="text" class="form-control" id="ProductName" name="ProductName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ProductDescription">Product Description</label>
+        <input type="text" class="form-control" id="ProductDescription" name="ProductDescription" />
+    </div>
+
+    <div class="form-group">
+        <label for="ProductPrice">Price</label>
+        <input type="number" step="0.01" class="form-control" id="ProductPrice" name="ProductPrice" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ProductStockQuantity">Stock Quantity</label>
+        <input type="number" class="form-control" id="ProductStockQuantity" name="ProductStockQuantity" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ProductFilePath">Product File</label>
+        <input type="file" class="form-control" id="ProductFilePath" name="ProductFilePath" />
+    </div>
+
+    <hr />
+
+    <!-- Order Information Section -->
+    <h3>Order Information</h3>
+    <div class="form-group">
+        <label for="OrderId">Order ID</label>
+        <input type="number" class="form-control" id="OrderId" name="OrderId" required />
+    </div>
+
+    <div class="form-group">
+        <label for="CustomerId">Customer ID</label>
+        <input type="number" class="form-control" id="CustomerId" name="CustomerId" required />
+    </div>
+
+    <div class="form-group">
+        <label for="OrderDate">Order Date</label>
+        <input type="datetime-local" class="form-control" id="OrderDate" name="OrderDate" required />
+    </div>
+
+    <div class="form-group">
+        <label for="TotalAmount">Total Amount</label>
+        <input type="number" step="0.01" class="form-control" id="TotalAmount" name="TotalAmount" required />
+    </div>
+
+    <div class="form-group">
+        <label for="OrderDetails">Order Details</label>
+        <textarea class="form-control" id="OrderDetails" name="OrderDetails" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Data</button>
+</form>
+
+<hr />
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back to Home</a>
